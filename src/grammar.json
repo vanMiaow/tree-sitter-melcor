@@ -1,0 +1,236 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/grammar.schema.json",
+  "name": "melcor",
+  "rules": {
+    "source_file": {
+      "type": "REPEAT",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "program"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "record"
+          }
+        ]
+      }
+    },
+    "program": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "TOKEN",
+              "content": {
+                "type": "PATTERN",
+                "value": "end",
+                "flags": "i"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "program",
+            "flags": "i"
+          }
+        },
+        {
+          "type": "TOKEN",
+          "content": {
+            "type": "PATTERN",
+            "value": "melgen|melcor",
+            "flags": "i"
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_newline"
+        }
+      ]
+    },
+    "record": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "first",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "id"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "int"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "define"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "macro"
+              }
+            ]
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "id"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_number"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "string"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "macro"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "punct"
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "backslash"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_newline"
+        }
+      ]
+    },
+    "id": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[A-Za-z][A-Za-z0-9_]*"
+      }
+    },
+    "macro": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "_[A-Za-z0-9_]*_"
+      }
+    },
+    "define": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "#[A-Za-z]*"
+      }
+    },
+    "_number": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "float"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "int"
+        }
+      ]
+    },
+    "int": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\d+"
+      }
+    },
+    "float": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "(\\d+\\.\\d*|\\.\\d+)([DdEe][+-]?\\d+)?"
+      }
+    },
+    "string": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "'[^'\\n]*'|\"[^\"\\n]*\""
+      }
+    },
+    "punct": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[-+*/(),]"
+      }
+    },
+    "backslash": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\\\"
+      }
+    },
+    "comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "(\\/\\/|!)[^\\n]*"
+      }
+    },
+    "_newline": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "\\r?\\n"
+      }
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": [],
+  "reserved": {}
+}

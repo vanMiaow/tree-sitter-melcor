@@ -1,0 +1,41 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "melcor",
+      "camelcase": "Melcor",
+      "title": "Melcor",
+      "scope": "source.melcor",
+      "file-types": [
+        "mel",
+        "mpp"
+      ],
+      "injection-regex": "^melcor$",
+      "class-name": "TreeSitterMelcor"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Melcor grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "vanMiaow",
+        "email": "mf.1997@live.cn",
+        "url": "https://github.com/vanMiaow"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/vanMiaow/tree-sitter-melcor"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}
