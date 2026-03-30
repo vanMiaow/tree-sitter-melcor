@@ -23,9 +23,10 @@ module.exports = grammar({
     program: $ => seq(
       optional(token(/end/i)),
       token(/program/i),
-      token(/melgen|melcor/i),
+      $.prog_name,
       $._newline
     ),
+    prog_name: _ => token(/melgen|melcor/i),
 
     // record
     record: $ => seq(

@@ -46,18 +46,22 @@
           }
         },
         {
-          "type": "TOKEN",
-          "content": {
-            "type": "PATTERN",
-            "value": "melgen|melcor",
-            "flags": "i"
-          }
+          "type": "SYMBOL",
+          "name": "prog_name"
         },
         {
           "type": "SYMBOL",
           "name": "_newline"
         }
       ]
+    },
+    "prog_name": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "melgen|melcor",
+        "flags": "i"
+      }
     },
     "record": {
       "type": "SEQ",

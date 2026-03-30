@@ -1,6 +1,6 @@
 
 ; program
-(program) @type @markup.underline
+(program (prog_name) @markup.underline) @type
 
 ; identifier
 (id) @variable

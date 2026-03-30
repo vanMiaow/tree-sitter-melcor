@@ -22,7 +22,7 @@
 enum ts_symbol_identifiers {
   aux_sym_program_token1 = 1,
   aux_sym_program_token2 = 2,
-  aux_sym_program_token3 = 3,
+  sym_prog_name = 3,
   sym_id = 4,
   sym_macro = 5,
   sym_define = 6,
@@ -45,7 +45,7 @@ static const char * const ts_symbol_names[] = {
   [ts_builtin_sym_end] = "end",
   [aux_sym_program_token1] = "program_token1",
   [aux_sym_program_token2] = "program_token2",
-  [aux_sym_program_token3] = "program_token3",
+  [sym_prog_name] = "prog_name",
   [sym_id] = "id",
   [sym_macro] = "macro",
   [sym_define] = "define",
@@ -68,7 +68,7 @@ static const TSSymbol ts_symbol_map[] = {
   [ts_builtin_sym_end] = ts_builtin_sym_end,
   [aux_sym_program_token1] = aux_sym_program_token1,
   [aux_sym_program_token2] = aux_sym_program_token2,
-  [aux_sym_program_token3] = aux_sym_program_token3,
+  [sym_prog_name] = sym_prog_name,
   [sym_id] = sym_id,
   [sym_macro] = sym_macro,
   [sym_define] = sym_define,
@@ -100,9 +100,9 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = false,
     .named = false,
   },
-  [aux_sym_program_token3] = {
-    .visible = false,
-    .named = false,
+  [sym_prog_name] = {
+    .visible = true,
+    .named = true,
   },
   [sym_id] = {
     .visible = true,
@@ -400,10 +400,10 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           ('a' <= lookahead && lookahead <= 'z')) ADVANCE(45);
       END_STATE();
     case 28:
-      ACCEPT_TOKEN(aux_sym_program_token3);
+      ACCEPT_TOKEN(sym_prog_name);
       END_STATE();
     case 29:
-      ACCEPT_TOKEN(aux_sym_program_token3);
+      ACCEPT_TOKEN(sym_prog_name);
       if (('0' <= lookahead && lookahead <= '9') ||
           ('A' <= lookahead && lookahead <= 'Z') ||
           lookahead == '_' ||
@@ -642,7 +642,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [ts_builtin_sym_end] = ACTIONS(1),
     [aux_sym_program_token1] = ACTIONS(1),
     [aux_sym_program_token2] = ACTIONS(1),
-    [aux_sym_program_token3] = ACTIONS(1),
+    [sym_prog_name] = ACTIONS(1),
     [sym_id] = ACTIONS(1),
     [sym_macro] = ACTIONS(1),
     [sym_define] = ACTIONS(1),
@@ -804,7 +804,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(3), 1,
       sym_comment,
     ACTIONS(74), 1,
-      aux_sym_program_token3,
+      sym_prog_name,
   [89] = 2,
     ACTIONS(3), 1,
       sym_comment,
@@ -814,7 +814,7 @@ static const uint16_t ts_small_parse_table[] = {
     ACTIONS(3), 1,
       sym_comment,
     ACTIONS(78), 1,
-      aux_sym_program_token3,
+      sym_prog_name,
   [103] = 2,
     ACTIONS(19), 1,
       sym_comment,
