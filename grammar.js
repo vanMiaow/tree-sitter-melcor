@@ -67,7 +67,7 @@ module.exports = grammar({
     backslash: _ => token(/\\/),
 
     // miscellaneous
-    comment: _ => token(/(\/\/|!)[^\n]*/),
+    comment: _ => token(/(\/\/|!)(\\+(.|\r?\n)|[^\\\n])*|\/\*[^*]*\*+([^/*][^*]*\*+)*\//),
     _newline: _ => token(/\r?\n/)
   }
 });

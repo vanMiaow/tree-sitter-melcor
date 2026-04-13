@@ -29,7 +29,7 @@
 ; punctuation
 ((punct) @punctuation (#match? @punctuation "[(),]"))
 ; backslash
-(backslash) @punctuation
+(backslash) @comment
 
 ; comment
 (comment) @comment
